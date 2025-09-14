@@ -37,7 +37,14 @@ int main() {
 
         int** matrix_a = init_matrix(size);
         int** matrix_b = init_matrix(size);
-        int** matrix_r = init_matrix(size);
+        int** matrix_r = new int*[size];
+
+        for (int x = 0; x < size; x++) {
+            matrix_r[x] = new int[size];
+            for (int y = 0; y < size; y++) {
+                matrix_r[x][y] = 0;
+            }
+        }
 
         auto start = chrono::high_resolution_clock::now();
         multiplication_classic(matrix_a, matrix_b, matrix_r, size);
