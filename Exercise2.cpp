@@ -30,6 +30,7 @@ void multiplication_classic(int **matrix_a, int** matrix_b, int** matrix_r, int 
 
 int main() {
     int size_num = sizeof(SIZES) / sizeof(SIZES[0]);
+    cout << "Multiplication Classic Method" << endl;
     for (int i = 0; i < size_num; i++) {
         int size = SIZES[i];
         cout << "Array size: " << size << " x " << size << endl;
