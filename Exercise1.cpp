@@ -1,10 +1,9 @@
 #include <iostream>
-#include <cmath>
 #include <chrono>
-#include <vector>
+#include <iomanip>
 using namespace std;
 
-const int MAX = 1024;
+const int MAX = 64;
 
 double A[MAX][MAX], x[MAX], y[MAX];
 
@@ -19,7 +18,6 @@ void init_matrix() {
 }
 
 void first_pair_loops() {
-    fill(begin(y), end(y), 0.0);
     for (int i = 0; i < MAX; i++) {
         for (int j = 0; j < MAX; j++) {
             y[i] += A[i][j] * x[j];
@@ -28,7 +26,6 @@ void first_pair_loops() {
 }
 
 void second_pair_loops() {
-    fill(begin(y), end(y), 0.0);
     for (int j = 0; j < MAX; j++) {
         for (int i = 0; i < MAX; i++) {
             y[i] += A[i][j] * x[j];
@@ -42,13 +39,15 @@ int main() {
     first_pair_loops();
     auto end_time_first = chrono::high_resolution_clock::now();
     double time_first_loop = chrono::duration<double>(end_time_first - start_time_first).count();
-    cout << "Time loop i-j is: " << time_first_loop << endl;  
 
     auto start_time_second = chrono::high_resolution_clock::now();
     second_pair_loops();
     auto end_time_second = chrono::high_resolution_clock::now();
     double time_second_loop = chrono::duration<double>(end_time_second - start_time_second).count();
-    cout << "Time loop j-i is:" << time_second_loop << endl;
-    
+
+    cout << fixed << setprecision(9);
+    cout << "Time loop i-j is: " << time_first_loop << " s" << endl;  
+    cout << "Time loop j-i is: " << time_second_loop << " s" << endl;
+
     return 0;
 }
